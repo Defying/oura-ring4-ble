@@ -1,0 +1,17 @@
+[Unit]
+Description=Oura Ring 4 zero-auth BLE chase
+After=bluetooth.service
+Wants=bluetooth.service
+
+[Service]
+Type=simple
+User=@OURA_SERVICE_USER@
+WorkingDirectory=@OURA_REPO_DIR@
+Environment=PYTHONUNBUFFERED=1
+ExecStart=@OURA_REPO_DIR@/scripts/pi-zeroauth-chase.sh
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=0
+
+[Install]
+WantedBy=multi-user.target

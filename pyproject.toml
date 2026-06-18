@@ -1,0 +1,33 @@
+[project]
+name = "oura-ring4-ble"
+version = "0.1.0"
+description = "Console BLE probe for the Oura Ring 4 protocol"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+dependencies = [
+  "bleak>=0.22,<2",
+  "pycryptodome>=3.20,<4",
+]
+
+[project.scripts]
+oura-ring4-ble = "oura_ring4_ble.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.0,<9",
+  "ruff>=0.8,<1",
+]
+
+[tool.ruff]
+line-length = 92
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

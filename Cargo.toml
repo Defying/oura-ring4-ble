@@ -1,0 +1,54 @@
+[package]
+name = "oura-ring4-ble-rs"
+version = "0.1.0"
+edition = "2024"
+description = "Rust BLE monitor for Oura Ring 4"
+license = "MIT"
+
+[[bin]]
+name = "oura-ring4-keepalive"
+path = "rust/src/main.rs"
+
+[[bin]]
+name = "oura-ring4-native-read"
+path = "rust/src/native_read.rs"
+
+[dependencies]
+anyhow = "1"
+btleplug = "0.11"
+clap = { version = "4", features = ["derive"] }
+futures-util = "0.3"
+hex = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal", "time"] }
+uuid = { version = "1", features = ["serde"] }
+
+[target.'cfg(target_vendor = "apple")'.dependencies]
+objc2 = "0.5.2"
+objc2-core-bluetooth = { version = "0.2.2", default-features = false, features = [
+    "std",
+    "CBAdvertisementData",
+    "CBAttribute",
+    "CBCentralManager",
+    "CBCharacteristic",
+    "CBManager",
+    "CBPeer",
+    "CBPeripheral",
+    "CBService",
+    "CBUUID",
+] }
+objc2-foundation = { version = "0.2.2", default-features = false, features = [
+    "std",
+    "NSArray",
+    "NSData",
+    "NSDate",
+    "NSDictionary",
+    "NSEnumerator",
+    "NSError",
+    "NSObject",
+    "NSRunLoop",
+    "NSString",
+    "NSUUID",
+    "NSValue",
+] }
